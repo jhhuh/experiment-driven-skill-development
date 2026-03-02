@@ -53,6 +53,23 @@ Novel scenario: improving a "defensive-error-handling" skill. All three skills c
 
 The strongest evidence that `iterative-skill-refinement` works: when given the same Phase 3 failure data from the real HDD project, a fresh agent (with only the skill loaded) independently arrived at the same root cause diagnosis and proposed the same structural fixes that were actually implemented. The skill doesn't just teach a process — it guides agents to the right answer.
 
-## Repo History
+## Repo Extraction & Standalone Setup (2026-03-02)
 
-Originally a subdirectory of `hole-driven-development-skill`. Extracted via `git subtree split` to preserve commit history. The parent repo's subdirectory was then removed.
+This project started as a subdirectory (`experiment-driven-skill-development/`) inside the [HDD skill repo](https://github.com/jhhuh/hole-driven-development-skill). All implementation happened there because the sandbox couldn't persist files outside that repo.
+
+### Extraction steps
+
+1. **`git subtree split --prefix=experiment-driven-skill-development`** — created a branch with only this subdirectory's commits (9 commits, full history preserved).
+2. **Created GitHub repo** via `gh repo create jhhuh/experiment-driven-skill-development --public`.
+3. **Pushed split branch** as `master` to the new repo.
+4. **Added repo metadata** — description, homepage URL, 9 topics (`claude-code`, `claude-code-skills`, `ai-agent-skills`, `skill-development`, `blind-assessment`, `experiment-design`, `tdd`, `prompt-engineering`, `llm-evaluation`).
+5. **Set up GitHub Pages** — MkDocs Material site with GitHub Actions workflow (`.github/workflows/docs.yml`), enabled via `gh api repos/.../pages`.
+6. **Wrote docs-site** — index page, 3 skill pages (with admonitions for principles/red flags), results page, origin story page.
+7. **Removed subdirectory** from parent repo (`git rm -r experiment-driven-skill-development/`).
+8. **Enriched CLAUDE.md** — added project overview, skill composition diagram, structure with descriptions, pointer to devlog.
+9. **Added artifacts/devlog.md** — this file, capturing design decisions and implementation history from the original conversation.
+10. **Restructured to artifact-first convention** — moved `docs/plans/` to `artifacts/plan_*.md`, added `artifacts/logs/`.
+
+### Why this matters
+
+The original conversation context (in the HDD repo's Claude session) is not accessible from a fresh clone of this repo. The devlog, CLAUDE.md, plans, and test results together reconstruct the essential reasoning without needing the original session transcript.
