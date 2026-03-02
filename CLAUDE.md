@@ -38,6 +38,10 @@ experiment-set-design       — what to test, how to progress phases
 └── iterative-skill-refinement — the improvement loop (uses both above)
 ```
 
+## History & Context
+
+Read `artifacts/devlog.md` for design decisions, implementation history, and key validation results.
+
 ## Current Status
 
 All three skills: tested (RED → GREEN), integration-tested, docs site live.
