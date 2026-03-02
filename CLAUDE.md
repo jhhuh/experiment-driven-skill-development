@@ -19,7 +19,11 @@ tests/
   <skill-name>/results/baseline.md  — behavior WITHOUT skill (RED)
   <skill-name>/results/green.md     — behavior WITH skill (GREEN)
   integration/                      — multi-skill composition test
-docs/plans/                         — design doc and implementation plan
+artifacts/
+  devlog.md                         — design decisions, implementation history, key validation
+  plan_design.md                    — original design doc
+  plan_implementation.md            — 9-task implementation plan
+  logs/                             — test output logs
 docs-site/                          — MkDocs Material source (deployed via GitHub Actions)
 ```
 
