@@ -15,6 +15,9 @@ If you only improve against a fixed benchmark, you're training to the test. Ever
 1. EXPERIMENT — Run baseline vs skill on diverse tasks
 2. ASSESS    — Blind assess (use blind-skill-assessment)
    └─ Skill wins consistently? → DONE (see Convergence)
+   └─ Baseline wins consistently after 2+ cycles? → STOP (see When to Abandon)
+   └─ Use a separate agent/session for assessment when possible.
+       If same actor must assess: enforce time gap, strict sanitization, rubric-first.
 3. DIAGNOSE  — Root cause on dimensions where skill lost
    └─ Don't fix symptoms. Ask: "What class of bugs does this represent?"
    └─ Example: "bugs at hole boundaries" → missing cross-hole verification
@@ -48,6 +51,16 @@ Stop when **all** hold:
 3. Last 2 cycles produced no revisions
 4. Gains per cycle are diminishing
 
+## When to Abandon
+
+Stop iterating and rethink/abandon the skill when **any** hold:
+
+1. Baseline wins consistently after 2+ improvement cycles with diverse tasks
+2. Each edit fixes one dimension but degrades another (zero-sum)
+3. The skill's core approach is structurally incompatible with quality output
+
+Abandoning is a valid conclusion, not a failure. A methodology that can't conclude "this doesn't work" is confirmation bias, not science.
+
 ## Revision Log
 
 Every skill edit gets a row. No undocumented changes.
@@ -58,7 +71,9 @@ Every skill edit gets a row. No undocumented changes.
 
 ## Example: HDD VERIFY Step
 
-Blind assessment: baseline won 4/5. Bug Hunter found bugs at hole boundaries — shared state and error paths crossing seams. Root cause: no cross-hole verification step. Edit: added VERIFY step (check state, scopes, error paths after each fill). Re-run: HDD won 5/5. New tasks confirmed. Converged.
+Blind assessment: A won 4/5 (decoded: A=baseline). Bug Hunter found bugs at hole boundaries — shared state and error paths crossing seams. Root cause: no cross-hole verification step. Edit: added VERIFY step (check state, scopes, error paths after each fill). Re-run: B won 5/5 (decoded: B=HDD). New tasks confirmed. Converged.
+
+Counter-example: A skill adding "always validate inputs" was edited 3 times. Each cycle fixed one persona's scores but degraded another (validation noise hurt readability). After cycle 3, baseline still won 3/5. Conclusion: the skill's approach was zero-sum. Abandoned.
 
 ## Red Flags — STOP
 

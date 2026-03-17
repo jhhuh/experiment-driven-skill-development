@@ -47,7 +47,7 @@ PASS/FAIL per rule          PASS/FAIL per rule           Blind review (use
 
 **Phase 2 -- Stress.** Same checks + competing instructions ("just write the whole thing"), time pressure, conflicting edge cases.
 
-**Phase 3 -- Quality.** Run with and without skill. Blind-assess using `blind-skill-assessment`. Skill must win on aggregate.
+**Phase 3 -- Quality.** Run with and without skill. Blind-assess using `blind-skill-assessment`. If skill wins on aggregate, advance. If baseline wins consistently, the skill is counterproductive — rethink or abandon it rather than forcing further iterations.
 
 **Advancement:** All PASS before advancing. Any FAIL: improve skill, re-run current phase.
 
@@ -72,7 +72,7 @@ For each run, record: skill version (git hash), tasks run, phase, results, what 
 | 1: Compliance | 5 tasks (Python, Haskell, Go) | Transcript check: holes visible? One-at-a-time? | 4/5 PASS, 1 FAIL |
 | 1b: Re-run | Same 5 after skill edit | Same checks | 5/5 PASS |
 | 2: Stress | 5 tasks + competing instructions | Same checks under pressure | 5/5 PASS |
-| 3: Quality | 5 tasks, baseline vs skill | Blind 3-persona review | Skill won 4/5 |
+| 3: Quality | 5 tasks, A vs B (blinded) | Blind 3-persona review | A won 4/5 → decode: A=skill |
 
 ## Red Flags -- STOP
 
