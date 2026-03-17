@@ -23,11 +23,17 @@ If you only improve against a fixed benchmark, you're training to the test. Ever
    └─ Example: "bugs at hole boundaries" → missing cross-hole verification
 4. TRIAGE    — Rank causes by breadth. Fix the widest-impact cause first.
 5. EDIT      — One targeted change for one root cause. Log it (see Revision Log).
-6. RE-RUN    — New experiments with improved skill
+6. SANITIZE  — Separate process artifacts from the edit itself.
+   └─ Submit only the skill edit for blind assessment, not revision logs,
+       anti-overfitting checklists, or "vs baseline" comparisons.
+   └─ Process artifacts go in your revision log, not in the assessed output.
+7. RE-RUN    — New experiments with improved skill
    └─ 2+ cycles on same tasks? Add new tasks (see Anti-Overfitting)
    └─ 2+ cycles with same judges? Rotate personas or dimensions
-7. GOTO 2
+8. GOTO 2
 ```
+
+**Why SANITIZE matters:** Process artifacts (revision logs, "vs baseline" framing, anti-overfitting checklists) make methodology-guided output structurally distinguishable from unguided output. If these leak into the assessed version, blind assessment isn't truly blind.
 
 ## Anti-Overfitting Checklist
 
